@@ -27,6 +27,5 @@ public class User {
     @Column(nullable = false)
     private String email;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Subscription> subscriptions = new ArrayList<>();
+
 }

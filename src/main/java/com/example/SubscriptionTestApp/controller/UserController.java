@@ -1,6 +1,10 @@
 package com.example.SubscriptionTestApp.controller;
 
+import com.example.SubscriptionTestApp.dto.request.UserRequest;
+import com.example.SubscriptionTestApp.dto.response.UserResponse;
 import com.example.SubscriptionTestApp.entity.User;
+import com.example.SubscriptionTestApp.mapping.UserMapper;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,20 +16,25 @@ import com.example.SubscriptionTestApp.service.UserService;
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
+    private UserMapper userMapper;
 
     @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody User user){
-        return ResponseEntity.status(HttpStatus.CREATED).body(userService.createUser(user));
+    public ResponseEntity<UserResponse> createUser(@Valid @RequestBody UserRequest request){
+        UserResponse response = userService.createUser(request);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> getUser(@PathVariable Long Id){
-        return ResponseEntity.ok(userService.getUserById(Id));
+    public ResponseEntity<UserResponse> getUser(@PathVariable Long id){
+        UserResponse  response = userService.getUserById(id);
+        return ResponseEntity.ok(response);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User user){
-        return ResponseEntity.ok(userService.updateUser(id, user));
+    public ResponseEntity<UserResponse> updateUser(@PathVariable Long id,
+                                                   @Valid @RequestBody UserRequest  request){
+        return ResponseEntity.ok(userService.updateUser(id, request));
     }
 
     @DeleteMapping("/{id}")
