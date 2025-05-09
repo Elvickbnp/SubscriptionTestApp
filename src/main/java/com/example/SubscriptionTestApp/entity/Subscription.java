@@ -1,4 +1,4 @@
-package Entity;
+package com.example.SubscriptionTestApp.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "subscription")
+@Table(name = "subscriptions")
 @Getter
 @Setter
 @NoArgsConstructor

@@ -1,4 +1,4 @@
-package exception;
+package com.example.SubscriptionTestApp.exception;
 
 public class UserNotFoundException extends RuntimeException{
     private final Long userId;

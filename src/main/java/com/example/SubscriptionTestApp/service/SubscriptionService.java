@@ -1,11 +1,11 @@
-package service;
+package com.example.SubscriptionTestApp.service;
 
-import Entity.Subscription;
-import Entity.User;
+import com.example.SubscriptionTestApp.entity.Subscription;
+import com.example.SubscriptionTestApp.entity.User;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import repository.SubscriptionRepository;
+import com.example.SubscriptionTestApp.repository.SubscriptionRepository;
 
 import java.util.List;
 

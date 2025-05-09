@@ -1,18 +1,18 @@
-package controller;
+package com.example.SubscriptionTestApp.controller;
 
-import Entity.Subscription;
+import com.example.SubscriptionTestApp.entity.Subscription;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import repository.SubscriptionRepository;
-import service.SubscriptionService;
+import com.example.SubscriptionTestApp.repository.SubscriptionRepository;
+import com.example.SubscriptionTestApp.service.SubscriptionService;
 
 import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/user/{userId}/subscription")
+@RequestMapping("/users/{userId}/subscriptions")
 @RequiredArgsConstructor
 public class SubscriptionController {
     private final SubscriptionService subscriptionService;

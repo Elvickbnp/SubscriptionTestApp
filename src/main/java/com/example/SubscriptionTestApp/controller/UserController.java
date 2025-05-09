@@ -1,19 +1,19 @@
-package controller;
+package com.example.SubscriptionTestApp.controller;
 
-import Entity.User;
+import com.example.SubscriptionTestApp.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import service.UserService;
+import com.example.SubscriptionTestApp.service.UserService;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/users")
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
 
-    @PostMapping("/addUser")
+    @PostMapping
     public ResponseEntity<User> createUser(@RequestBody User user){
         return ResponseEntity.status(HttpStatus.CREATED).body(userService.createUser(user));
     }

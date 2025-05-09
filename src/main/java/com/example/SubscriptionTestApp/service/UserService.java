@@ -1,11 +1,11 @@
-package service;
+package com.example.SubscriptionTestApp.service;
 
-import Entity.User;
-import exception.UserNotFoundException;
+import com.example.SubscriptionTestApp.entity.User;
+import com.example.SubscriptionTestApp.exception.UserNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import repository.UserRepository;
+import com.example.SubscriptionTestApp.repository.UserRepository;
 
 @Service
 @RequiredArgsConstructor

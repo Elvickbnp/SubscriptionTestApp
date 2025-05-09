@@ -1,6 +1,6 @@
-package repository;
+package com.example.SubscriptionTestApp.repository;
 
-import Entity.Subscription;
+import com.example.SubscriptionTestApp.entity.Subscription;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -10,10 +10,10 @@ public interface SubscriptionRepository extends JpaRepository<Subscription, Long
     List<Subscription> findByUserId(Long userId);
 
     @Query(value = """
-    SELECT s.service_name as serviceName, Count(*) as count 
-    FROM subscriptions s 
+    SELECT s.service_name as serviceName, Count(*) as count
+    FROM subscriptions s
     GROUP BY s.service_name
-    ORDER BY count DESC 
+    ORDER BY count DESC
     LIMIT 3""",
     nativeQuery = true)
     List<TopSubscriptions> findTop3Subscriptions();

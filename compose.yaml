@@ -1,12 +1,10 @@
 services:
   postgres:
-    image: 'postgres:latest'
+    image: bitnami/postgresql:14
     environment:
         POSTGRES_USER: subscription_user
         POSTGRES_PASSWORD: strongpassword
         POSTGRES_DB: subscription_db
-    ports:
-      - '5432'
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
@@ -22,13 +20,13 @@ services:
       - "8080:8080"
     environment:
       DB_HOST: postgres
-      DB_PORT: 5432
+      DB_PORT: 5433:5432
       DB_NAME: subscription_db
       DB_USER: subscription_user
-      DB_PASSWORD: subscription_db
+      DB_PASSWORD: strongpassword
     depends_on:
       postgres:
-        condition: service_healthy
+        condition: service_started
 
 volumes:
   postgres_data:
