@@ -1,5 +1,6 @@
 package com.example.SubscriptionTestApp.service;
 
+import com.example.SubscriptionTestApp.dto.TopSubscriptionResponse;
 import com.example.SubscriptionTestApp.dto.request.SubscriptionRequest;
 import com.example.SubscriptionTestApp.dto.response.SubscriptionResponse;
 import com.example.SubscriptionTestApp.entity.Subscription;
@@ -7,6 +8,8 @@ import com.example.SubscriptionTestApp.entity.User;
 import com.example.SubscriptionTestApp.mapping.SubscriptionMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import com.example.SubscriptionTestApp.repository.SubscriptionRepository;
 
@@ -43,7 +46,8 @@ public class SubscriptionService {
         log.info("Delete subscription: {}", subscriptionId);
     }
 
-    public List<SubscriptionRepository.TopSubscriptions> getTopSubscriptions(){
-        return subscriptionRepository.findTop3Subscriptions();
+    public List<TopSubscriptionResponse> getTopSubscriptions() {
+        Pageable topThree = PageRequest.of(0, 3); // LIMIT 3
+        return subscriptionRepository.findTop3Subscriptions(topThree);
     }
 }

@@ -7,6 +7,7 @@ import com.example.SubscriptionTestApp.exception.UserNotFoundException;
 import com.example.SubscriptionTestApp.mapping.UserMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.SubscriptionTestApp.repository.UserRepository;
 
@@ -15,6 +16,7 @@ import com.example.SubscriptionTestApp.repository.UserRepository;
 @Slf4j
 public class UserService {
     private final UserRepository userRepository;
+    @Autowired
     private final UserMapper userMapper;
 
     public UserResponse createUser(UserRequest request){
