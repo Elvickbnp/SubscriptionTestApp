@@ -1,6 +1,8 @@
-package repository;
+package com.example.SubscriptionTestApp.repository;
 
-import Entity.Subscription;
+import com.example.SubscriptionTestApp.dto.TopSubscriptionResponse;
+import com.example.SubscriptionTestApp.entity.Subscription;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -9,17 +11,20 @@ import java.util.List;
 public interface SubscriptionRepository extends JpaRepository<Subscription, Long> {
     List<Subscription> findByUserId(Long userId);
 
-    @Query(value = """
-    SELECT s.service_name as serviceName, Count(*) as count 
-    FROM subscriptions s 
-    GROUP BY s.service_name
-    ORDER BY count DESC 
-    LIMIT 3""",
-    nativeQuery = true)
-    List<TopSubscriptions> findTop3Subscriptions();
+    @Query("""
+            SELECT NEW com.example.SubscriptionTestApp.dto.TopSubscriptionResponse(
+                s.serviceName,
+                COUNT(s) AS subscriptionsCount
+            )
+            FROM Subscription s
+            GROUP BY s.serviceName
+            ORDER BY COUNT(s) DESC"""
+    )
+    List<TopSubscriptionResponse> findTop3Subscriptions(Pageable topThree);
 
     interface TopSubscriptions {
         String getServiceName();
+
         Long getCount();
     }
 }
