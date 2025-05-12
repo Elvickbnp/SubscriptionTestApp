@@ -2,14 +2,13 @@ package com.example.SubscriptionTestApp.controller;
 
 import com.example.SubscriptionTestApp.dto.request.UserRequest;
 import com.example.SubscriptionTestApp.dto.response.UserResponse;
-import com.example.SubscriptionTestApp.entity.User;
 import com.example.SubscriptionTestApp.mapping.UserMapper;
+import com.example.SubscriptionTestApp.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.example.SubscriptionTestApp.service.UserService;
 
 @RestController
 @RequestMapping("/users")
